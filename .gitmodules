@@ -1,0 +1,9 @@
+[submodule "modules/SpiffyDoctrine"]
+	path = modules/SpiffyDoctrine
+	url = git://github.com/juriansluiman/SpiffyDoctrine.git
+[submodule "modules/GedmoDoctrineExtensions"]
+	path = modules/GedmoDoctrineExtensions
+	url = git://github.com/juriansluiman/GedmoDoctrineExtensions.git
+[submodule "library/ZendFramework"]
+	path = library/ZendFramework
+	url = git://github.com/zendframework/zf2.git
