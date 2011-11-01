@@ -1,0 +1,19 @@
+<?php
+return array (
+  'Zcmf\\Content\\Repository\\Page' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Repository' . DIRECTORY_SEPARATOR . 'Page.php',
+  'Zcmf\\Content\\Repository\\Container' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Repository' . DIRECTORY_SEPARATOR . 'Container.php',
+  'Zcmf\\Content\\Service\\Collection' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Service' . DIRECTORY_SEPARATOR . 'Collection.php',
+  'Zcmf\\Content\\View\\Helper\\Video' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'View' . DIRECTORY_SEPARATOR . 'Helper' . DIRECTORY_SEPARATOR . 'Video.php',
+  'Zcmf\\Content\\View\\Helper\\Image' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'View' . DIRECTORY_SEPARATOR . 'Helper' . DIRECTORY_SEPARATOR . 'Image.php',
+  'Zcmf\\Content\\View\\Helper\\Form' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'View' . DIRECTORY_SEPARATOR . 'Helper' . DIRECTORY_SEPARATOR . 'Form.php',
+  'Zcmf\\Content\\View\\Helper\\Text' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'View' . DIRECTORY_SEPARATOR . 'Helper' . DIRECTORY_SEPARATOR . 'Text.php',
+  'Zcmf\\Content\\Admin' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Admin.php',
+  'Zcmf\\Content\\Model\\Page' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'Page.php',
+  'Zcmf\\Content\\Model\\Collection' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'Collection.php',
+  'Zcmf\\Content\\Model\\Form' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'Item' . DIRECTORY_SEPARATOR . 'Form.php',
+  'Zcmf\\Content\\Model\\FormElement' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'Item' . DIRECTORY_SEPARATOR . 'FormElement.php',
+  'Zcmf\\Content\\Model\\Item\\Text' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'Item' . DIRECTORY_SEPARATOR . 'Text.php',
+  'Zcmf\\Content\\Model\\Item\\Item' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'Item' . DIRECTORY_SEPARATOR . 'Item.php',
+  'Zcmf\\Content\\Model\\Container' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'Container.php',
+  'Zcmf\\Content\\Controller\\IndexController' => __DIR__ . DIRECTORY_SEPARATOR . '.' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Content' . DIRECTORY_SEPARATOR . 'Controller' . DIRECTORY_SEPARATOR . 'IndexController.php',
+);
