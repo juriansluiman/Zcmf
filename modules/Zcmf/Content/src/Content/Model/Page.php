@@ -42,8 +42,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package    
  * @subpackage Model
  * @author     Jurian Sluiman <jurian@soflomo.com>
- * @ORM\Entity(repositoryClass="Zcmf\Content\Repository\Page")
- * @ORM\Table(name="content_pages")
+ * @ORM\Entity
  */
 class Page extends Collection
 {

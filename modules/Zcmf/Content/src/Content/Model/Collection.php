@@ -43,7 +43,11 @@ use Doctrine\ORM\Mapping as ORM,
  * @package    
  * @subpackage Model
  * @author     Jurian Sluiman <jurian@soflomo.com>
- * @ORM\MappedSuperclass
+ * @ORM\Entity
+ * @ORM\Table(name="content_collections")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"page" = "Zcmf\Content\Model\Page", "container" = "Zcmf\Content\Model\Container"})
  */
 abstract class Collection
 {
@@ -62,14 +66,13 @@ abstract class Collection
     protected $type;
     
     /**
-     * @ORM\OneToMany(targetEntity="Zcmf\Content\Model\Item\Item", mappedBy="collection")
-     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Zcmf\Content\Model\Item\Text", mappedBy="collection")
      */
-    protected $items;
+    protected $texts;
     
     public function __construct ()
     {
-        $this->items = new ArrayCollection;
+        $this->texts = new ArrayCollection;
     }
     
     public function getId() {
@@ -84,11 +87,15 @@ abstract class Collection
         $this->type = $type;
     }
 
-    public function getItems() {
-        return $this->items;
+    public function getTexts() {
+        return $this->texts;
     }
 
-    public function setItems($items) {
-        $this->items = $items;
+    public function setTexts($texts) {
+        $this->texts = $texts;
+    }
+
+    public function getItems() {
+        return $this->getTexts();
     }
 }

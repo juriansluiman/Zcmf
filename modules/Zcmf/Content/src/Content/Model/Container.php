@@ -34,6 +34,8 @@
 
 namespace Zcmf\Content\Model;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Description of Container
  *
@@ -41,7 +43,7 @@ namespace Zcmf\Content\Model;
  * @subpackage Model
  * @author     Jurian Sluiman <jurian@soflomo.com>
  * @version    SVN: $Id:  $
- * @Entity(repositoryClass="Zcmf\Content\Repository\Container")
+ * @ORM\Entity
  */
 class Container extends Collection
 {

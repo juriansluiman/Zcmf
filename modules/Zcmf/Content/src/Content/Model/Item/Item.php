@@ -61,12 +61,11 @@ abstract class Item
     protected $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Zcmf\Content\Model\Collection", inversedBy="items")
-     * @ORM\JoinColumn(name="collection_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Zcmf\Content\Model\Collection")
      * @var Collection
      */
     protected $collection;
-
+    
     /**
      * Get id
      *
@@ -95,25 +94,5 @@ abstract class Item
     public function setName ($name)
     {
         $this->name = (string) $name;
-    }
-
-    /**
-     * Get collection
-     *
-     * @return Collection
-     */
-    public function getCollection ()
-    {
-        return $this->collection;
-    }
-
-    /**
-     * Set container
-     * 
-     * @param Collection $collection
-     */
-    public function setCollection (Collection $collection)
-    {
-        $this->collection = $collection;
     }
 }
