@@ -67,7 +67,7 @@ class Listener implements ListenerAggregate
         // @todo Find the right node as tree for this environment
         $parser = new Parser($this->routeSegments);
         $routes = $parser->parse($pages);
-
+var_dump($routes);exit;
         $e->setParam('routes', $routes);
     }
 

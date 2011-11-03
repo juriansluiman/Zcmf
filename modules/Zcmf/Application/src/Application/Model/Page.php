@@ -185,6 +185,23 @@ class Page
         return $this->route;
     }
 
+    public function getRoutePath ()
+    {
+        $path   = array($this->route);
+        $parent = $this->getParent();
+
+        while ($parent instanceof Page) {
+            $path[] = $parent->getRoute();
+            $parent = $parent->getParent();
+        }
+
+        $path = array_reverse($path);
+        $path = implode('/', $path);
+        $path = str_replace('//', '/', $path);
+
+        return $path;
+    }
+
     public function setRoute ($route)
     {
         $this->route = $route;

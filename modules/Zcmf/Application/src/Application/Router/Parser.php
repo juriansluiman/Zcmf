@@ -48,9 +48,9 @@ class Parser
              */
             if (0 !== strpos($page->getRoute(), '/')
                 && 0 !== strrpos($page->getParent()->getRoute(), '/')) {
-                $route['options']['route'] = '/' . $page->getRoute();
+                $route['options']['route'] = '/' . $page->getRoutePath();
             } else {
-                $route['options']['route'] = $page->getRoute();
+                $route['options']['route'] = $page->getRoutePath();
             }
 
             /**
@@ -70,12 +70,12 @@ class Parser
                 }
             }
 
+            $routes[$page->getId()] = $route;
+            
             if ($page->hasChildren()) {
                 $children = $page->getChildren();
-                $route['child_routes'] += $this->parse($children);
+                $routes += $this->parse($children);
             }
-
-            $routes[$page->getId()] = $route;
         }
 
         return $routes;
