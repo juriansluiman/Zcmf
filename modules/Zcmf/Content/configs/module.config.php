@@ -45,6 +45,12 @@ return array(
                                 'paths'       => array(__DIR__ . '/../src/Content/Model'),
                                 'cache-class' => 'Doctrine\Common\Cache\ArrayCache',
                             ),
+                            'content-item-annotation-driver' => array(
+                                'class'       => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                                'namespace'   => 'Zcmf\Content\Model\Item',
+                                'paths'       => array(__DIR__ . '/../src/Content/Model/Item'),
+                                'cache-class' => 'Doctrine\Common\Cache\ArrayCache',
+                            ),
                         ),
                     ),
                 ),

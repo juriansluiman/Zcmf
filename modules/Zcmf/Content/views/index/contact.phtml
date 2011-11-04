@@ -7,6 +7,16 @@
  */
 ?>
 
+<? if (isset($messages)):?>
+<aside>
+    <ul>
+    <? foreach ($messages as $message):?>
+        <li><?= $message?></li>
+    <? endforeach?>
+    </ul>
+</aside>
+<? endif?>
+
 <article>
     <?= $this->content_form($form, $current_route)?>
     <?= $this->content_text($text)?>

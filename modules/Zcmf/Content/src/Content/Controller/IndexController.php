@@ -36,6 +36,7 @@ namespace Zcmf\Content\Controller;
 
 use Zcmf\Application\Controller\ActionController,
     Zcmf\Content\Service\Container as ContainerService,
+    Zcmf\Content\Model\Item\Form,
     Zend\Mvc\Exception\DomainException;
 
 /**
@@ -61,7 +62,12 @@ class IndexController extends ActionController
 
         $this->setParam('script', $page->getType());
 
-        return $items + array('current_route' => $this->getMatchedRouteName());
+        $return = $items + array('current_route' => $this->getMatchedRouteName());
+        
+        if ($this->flashMessenger()->hasMessages()) {
+            $return['messages'] = $this->flashMessenger()->getMessages();
+        }
+        return $return;
     }
 
     /**
@@ -74,16 +80,28 @@ class IndexController extends ActionController
         }
         
         $service = $this->getLocator()->get('Zcmf\Content\Service\Collection');
-        $content = $service->getPage($this->page->getModuleId());
+        $page    = $service->getPage($this->page->getModuleId());
+        $items   = $service->getContainerItems($page);
 
-        $id      = $this->request->post()->get(self::ID);
+        $id      = (int) $this->request->post()->get(self::ID);
+        
+        foreach ($items as $item) {
+            if ($item instanceof Form && $id === $item->getId()) {
+                return $this->send($item);
+            }
+        }
 
+        throw new DomainException('Could not find form object to send message');
+    }
+
+    protected function send (Form $form)
+    {
         $this->flashMessenger()->addMessage('We will send you a message, I mean it!');
         // @todo Find form object
         // @todo Send email
 
         /** @todo Need proper way to remove child of this route */
         $route = str_replace('/send', '', $this->getMatchedRouteName());
-        $this->redirect()->toRoute($route);
+        return $this->redirect()->toRoute($route);
     }
 }
