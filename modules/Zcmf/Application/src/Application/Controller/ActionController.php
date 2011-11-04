@@ -27,4 +27,10 @@ abstract class ActionController extends ZendActionController
     {
         return $this->routeMatch->getParam($key, $default);
     }
+
+    protected function setParam ($key, $value)
+    {
+        $this->routeMatch->setParam($key, $value);
+        return $this;
+    }
 }
