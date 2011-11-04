@@ -54,8 +54,10 @@ class IndexController extends ActionController
     public function indexAction ()
     {
         $service = $this->getLocator()->get('Zcmf\Content\Service\Collection');
-        $content = $service->getPage($this->page->getModuleId());
-        $items   = $service->getContainerItems($content);
+        $page    = $service->getPage($this->page->getModuleId());
+        $items   = $service->getContainerItems($page);
+
+        $this->setParam('script', $page->getType());
         
         return $items;
     }

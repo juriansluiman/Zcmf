@@ -61,7 +61,7 @@ class Listener implements ListenerAggregate
     {
         $ident   = 'Zend\Mvc\Controller\ActionController';
 
-        $handler = $events->attach($ident, 'dispatch', array($this, 'loadScriptPath'), -40);
+        $handler = $events->attach($ident, 'dispatch', array($this, 'loadScriptPath'), -10);
         $this->staticListeners[] = array($ident, $handler);
         $handler = $events->attach($ident, 'dispatch', array($this, 'renderView'), -50);
         $this->staticListeners[] = array($ident, $handler);
@@ -103,8 +103,11 @@ class Listener implements ListenerAggregate
         $routeMatch = $e->getRouteMatch();
         $controller = $routeMatch->getParam('controller', 'index');
         $controller = $this->filterViewDirectory($controller);
-        $action     = $routeMatch->getParam('action', 'index');
-        $script     = $controller . '/' . $action . '.phtml';
+        $file       = $routeMatch->getParam('script', null);
+        if (null === $file) {
+            $file = $routeMatch->getParam('action', 'index');
+        }
+        $script     = $controller . '/' . $file. '.phtml';
 
         $vars       = $e->getResult();
         if (is_scalar($vars)) {
