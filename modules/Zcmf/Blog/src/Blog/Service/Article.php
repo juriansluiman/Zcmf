@@ -33,7 +33,8 @@
 
 namespace Zcmf\Blog\Service;
 
-use Doctrine\ORM\EntityManager;
+use SpiffyDoctrine\Service\Doctrine,
+    Doctrine\ORM\EntityManager;
 
 /**
  * Description of Article
@@ -49,9 +50,9 @@ class Article
      */
     protected $em;
     
-    public function setEntityManager (EntityManager $em)
+    public function setEntityManager (Doctrine $doctrine)
     {
-        $this->em = $em;
+        $this->em = $doctrine->getEntityManager();
     }
 
     public function getRecentArticles ($blogId)

@@ -2,7 +2,7 @@
 
 namespace Zcmf\Content\Service;
 
-use Zend\Config\Config,
+use SpiffyDoctrine\Service\Doctrine,
     Doctrine\ORM\EntityManager,
     Zcmf\Content\Model\Collection as CollectionModel;
 
@@ -16,9 +16,9 @@ class Collection
         $this->$types = $types;
     }
     
-    public function setEntityManager (EntityManager $em)
+    public function setEntityManager (Doctrine $doctrine)
     {
-        $this->em = $em;
+        $this->em = $doctrine->getEntityManager();
     }
     
     public function getPage ($id)

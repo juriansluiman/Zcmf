@@ -32,7 +32,21 @@ return array(
             ),
             'Zcmf\Content\Service\Collection' => array(
                 'parameters' => array(
-                    'em' => 'em-default'
+                    'doctrine' => 'doctrine'
+                ),
+            ),
+            'doctrine' => array(
+                'parameters' => array(
+                    'config' => array(
+                        'metadata-driver-impl' => array(
+                            'content-annotation-driver' => array(
+                                'class'       => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                                'namespace'   => 'Zcmf\Content\Model',
+                                'paths'       => array(__DIR__ . '/../src/Content/Model'),
+                                'cache-class' => 'Doctrine\Common\Cache\ArrayCache',
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),

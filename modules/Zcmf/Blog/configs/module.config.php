@@ -51,12 +51,26 @@ return array(
             ),
             'blog-service' => array(
                 'parameters' => array(
-                    'em' => 'em-default',
+                    'doctrine' => 'doctrine',
                 ),
             ),
             'article-service' => array(
                 'parameters' => array(
-                    'em' => 'em-default',
+                    'doctrine' => 'doctrine',
+                ),
+            ),
+            'doctrine' => array(
+                'parameters' => array(
+                    'config' => array(
+                        'metadata-driver-impl' => array(
+                            'blog-annotation-driver' => array(
+                                'class'       => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                                'namespace'   => 'Zcmf\Blog\Model',
+                                'paths'       => array(__DIR__ . '/../src/Blog/Model'),
+                                'cache-class' => 'Doctrine\Common\Cache\ArrayCache',
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),
