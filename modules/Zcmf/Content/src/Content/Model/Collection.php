@@ -69,10 +69,16 @@ abstract class Collection
      * @ORM\OneToMany(targetEntity="Zcmf\Content\Model\Item\Text", mappedBy="collection")
      */
     protected $texts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Zcmf\Content\Model\Item\Form", mappedBy="collection")
+     */
+    protected $forms;
     
     public function __construct ()
     {
         $this->texts = new ArrayCollection;
+        $this->forms = new ArrayCollection;
     }
     
     public function getId() {
@@ -95,7 +101,18 @@ abstract class Collection
         $this->texts = $texts;
     }
 
+    public function getForms ()
+    {
+        return $this->forms;
+    }
+
+    public function setForms ($forms)
+    {
+        $this->forms = $forms;
+    }
+
     public function getItems() {
-        return $this->getTexts();
+        return array_merge($this->getTexts()->toArray(),
+                           $this->getForms()->toArray());
     }
 }

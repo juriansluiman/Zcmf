@@ -48,6 +48,8 @@ use Zcmf\Application\Controller\ActionController,
  */
 class IndexController extends ActionController
 {
+    const ID = 'ZcmfContentFormId';
+    
     /**
      * Render content page
      */
@@ -58,8 +60,8 @@ class IndexController extends ActionController
         $items   = $service->getContainerItems($page);
 
         $this->setParam('script', $page->getType());
-        
-        return $items;
+
+        return $items + array('current_route' => $this->getMatchedRouteName());
     }
 
     /**
@@ -71,10 +73,17 @@ class IndexController extends ActionController
             throw new DomainException('Page not found', 404);
         }
         
-        $em      = $this->getLocator()->get('Zcmf\Content\Service\Collection');
+        $service = $this->getLocator()->get('Zcmf\Content\Service\Collection');
         $content = $service->getPage($this->page->getModuleId());
-        
+
+        $id      = $this->request->post()->get(self::ID);
+
+        $this->flashMessenger()->addMessage('We will send you a message, I mean it!');
         // @todo Find form object
         // @todo Send email
+
+        /** @todo Need proper way to remove child of this route */
+        $route = str_replace('/send', '', $this->getMatchedRouteName());
+        $this->redirect()->toRoute($route);
     }
 }

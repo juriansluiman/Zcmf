@@ -31,9 +31,10 @@
  * @license    http://unlicense.org Unlicense
  */
 
-namespace Zcmf\Content\Model;
+namespace Zcmf\Content\Model\Item;
 
-use Zcmf\Content\Model\Item\Item,
+use Doctrine\ORM\Mapping as ORM,
+    Zcmf\Content\Model\Item\Item,
     Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -42,37 +43,38 @@ use Zcmf\Content\Model\Item\Item,
  * @package    
  * @subpackage Model
  * @author     Jurian Sluiman <jurian@soflomo.com>
- * @Entity
+ * @ORM\Entity
+ * @ORM\Table(name="content_forms")
  */
 class Form extends Item
 {
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      * @var string
      */
     protected $recipientEmail;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      * @var string
      */
     protected $recipientName;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      * @var string
      */
     protected $subject;
 
     /**
-     * @Column(type="boolean")
+     * @ORM\Column(type="boolean")
      * @var bool
      */
     protected $cc;
 
     /**
-     * @OneToMany(targetEntity="Soflomo\Content\Model\FormElement", mappedBy="form")
-     * @var Doctrine\Common\Collections\ArrayCollection
+     * @ORM\OneToMany(targetEntity="Zcmf\Content\Model\Item\FormElement", mappedBy="form")
+     * @var ArrayCollection
      */
     protected $elements;
 
@@ -130,6 +132,4 @@ class Form extends Item
     {
         $this->elements = $elements;
     }
-
-
 }

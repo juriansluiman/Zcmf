@@ -31,7 +31,7 @@
  * @license    http://unlicense.org Unlicense
  */
 
-namespace Zcmf\Content\Model;
+namespace Zcmf\Content\Model\Item;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -41,38 +41,45 @@ use Doctrine\ORM\Mapping as ORM;
  * @package    
  * @subpackage Model
  * @author     Jurian Sluiman <jurian@soflomo.com>
- * @Entity
+ * @ORM\Entity
+ * @ORM\Table(name="content_formelements")
  */
 class FormElement
 {
     /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      * @var integer
      */
     protected $id;
 
     /**
-     * @ManyToOne(targetEntity="Soflomo\Content\Model\Form")
-     * @var Soflomo\Content\Model\Form
+     * @ORM\ManyToOne(targetEntity="Zcmf\Content\Model\Item\Form")
+     * @var Form
      */
     protected $form;
 
     /**
-     * @Column(type="integer")
+     * @ORM\Column(name="`order`", type="integer")
      * @var integer
      */
     protected $order;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      * @var string
      */
     protected $type;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string")
      * @var string
      */
     protected $options;
@@ -146,6 +153,17 @@ class FormElement
     {
         $this->type = (string) $type;
     }
+
+    public function getName ()
+    {
+        return $this->name;
+    }
+
+    public function setName ($name)
+    {
+        $this->name = (string) $name;
+    }
+
 
     /**
      * Get options
