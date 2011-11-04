@@ -24,12 +24,11 @@ class Collection
     public function getPage ($id)
     {
         return $this->em->find('Zcmf\Content\Model\Page', $id);
-        //return $this->em->getRepository('Zcmf\Content\Model\Page')->find($id);;
     }
     
     public function getInlineContainer ($id)
     {
-        return $this->em->getRepository('Zcmf\Content\Model\Container')->find($id);
+        return $this->em->find('Zcmf\Content\Model\Container', $id);
     }
     
     public function getContainerItems (CollectionModel $container)
