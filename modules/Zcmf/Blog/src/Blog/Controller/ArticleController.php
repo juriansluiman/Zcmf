@@ -53,7 +53,7 @@ class ArticleController extends ActionController
         $service  = $service = $this->getLocator()->get('article-service');
         $articles = $service->getRecentArticles($this->page->getModuleId());
         
-        return array('articles' => $articles);
+        return array('articles' => $articles, 'current_route' => $this->getMatchedRouteName());
     }
     
     public function viewAction ()

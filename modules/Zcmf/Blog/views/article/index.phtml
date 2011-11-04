@@ -7,7 +7,15 @@
 <h1>Blog</h1>
 
 <? foreach($articles as $article):?>
-    <? $url = 'article/' . $article->getId()?>
-    <h2><a href="<?= $url?>"><?= $article->getTitle()?></a></h2>
-    <?= $article->getLead()?>
+    <? $url = $this->url(array('id' => $article->getId()), array('name' => $current_route . '/view'))?>
+
+    <article>
+        <h2><a href="<?= $url?>"><?= $article->getTitle()?></a></h2>
+        <?= $article->getLead()?>
+    </article>
 <? endforeach?>
+
+<footer>
+    <? $url = $this->url(array(), array('name' => $current_route . '/archive'))?>
+    <p>Or view all articles in the <a href="<?= $url?>">archive</a>.</p>
+</footer>
