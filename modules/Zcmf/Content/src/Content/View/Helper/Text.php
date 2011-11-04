@@ -2,11 +2,11 @@
 namespace Zcmf\Content\View\Helper;
 
 use Zend\View\Helper\AbstractHelper,
-    Zcmf\Content\Model\Text;
+    Zcmf\Content\Model\Item\Text as TextModel;
 
 class Text extends AbstractHelper
 {
-    public function __invoke(Text $text)
+    public function __invoke(TextModel $text)
     {
         return $text->getBody();
     }
