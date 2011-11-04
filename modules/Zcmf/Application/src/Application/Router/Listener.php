@@ -59,7 +59,7 @@ class Listener implements ListenerAggregate
 
     public function loadRoutes(MvcEvent $e)
     {
-        $em    = $this->locator->get('em-default');
+        $em    = $this->locator->get('doctrine')->getEntityManager();
 
         $pages = $em->getRepository('Zcmf\Application\Model\Page')->getRootNodes();
         $pages = new ArrayObject($pages);
@@ -84,7 +84,7 @@ class Listener implements ListenerAggregate
         $pageId = $match->getParam('page-id', null);
 
         if (null !== $pageId && is_numeric($pageId)) {
-            $em   = $this->locator->get('em-default');
+            $em   = $this->locator->get('doctrine')->getEntityManager();
             $page = $em->find('Zcmf\Application\Model\Page', $pageId);
 
             $e->setParam('page', $page);

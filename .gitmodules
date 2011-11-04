@@ -1,6 +1,6 @@
 [submodule "modules/SpiffyDoctrine"]
 	path = modules/SpiffyDoctrine
-	url = git://github.com/juriansluiman/SpiffyDoctrine.git
+	url = git://github.com/SpiffyJr/SpiffyDoctrine.git
 [submodule "modules/GedmoDoctrineExtensions"]
 	path = modules/GedmoDoctrineExtensions
 	url = git://github.com/juriansluiman/GedmoDoctrineExtensions.git

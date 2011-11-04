@@ -32,38 +32,32 @@ return array(
                     'broker' => 'Zend\View\HelperBroker',
                 ),
             ),
-            'doctrine-container' => array(
+            'doctrine' => array(
                 'parameters' => array(
-                    'connection' => array(
-                        'default' => array(
-                            'dbname'   => 'zf2',
-                            'user'     => 'root',
-                            'password' => 'root',
-                            'host'     => '127.0.0.1',
-                        )
+                    'conn' => array(
+                        'host'     => '127.0.0.1',
+                        'user'     => 'root',
+                        'password' => 'root',
+                        'dbname'   => 'zf2',
                     ),
-                    'cache' => array(
-                        'default' => array(
-                            'class' => 'Doctrine\Common\Cache\ArrayCache'
-                        )
-                    ),
-                    'evm' => array(
-                        'default' => array(
-                            'subscribers' => array(
-                                'Gedmo\Tree\TreeListener',
-                            )
-                        )
-                    ),
-                    'em' => array(
-                        'default' => array(
-                            //'logger' => 'Doctrine\DBAL\Logging\EchoSQLLogger',
-                            'proxy' => array(
-                                'generate'  => true,
-                                'dir'       => __DIR__ . '/../../../../data/proxies',
-                                'namespace' => 'Zcmf\Application\Proxy'
+                    'config' => array(
+                        'proxy-dir'                 => __DIR__ . '/../../../../data/proxies',
+                        'proxy-namespace'           => 'Zcmf\Proxy',
+                        
+                        'metadata-driver-impl' => array(
+                            'application-annotation-driver' => array(
+                                'class'       => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                                'namespace'   => 'Zcmf\Application\Model',
+                                'paths'       => array(__DIR__ . '/../src/Application/Model'),
+                                'cache-class' => 'Doctrine\Common\Cache\ArrayCache',
                             ),
                         ),
                     ),
+                    'evm' => array(
+                        'subscribers' => array(
+                            'Gedmo\Tree\TreeListener'
+                        ),
+                    )  ,
                 ),
             ),
         ),
