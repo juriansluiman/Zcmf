@@ -35,6 +35,7 @@
 namespace Zcmf\Blog\Controller;
 
 use Zcmf\Application\Controller\ActionController,
+    Zcmf\Blog\Service\Article as ArticleService,
     Zend\Mvc\Exception\DomainException;
 
 /**
@@ -45,18 +46,19 @@ use Zcmf\Application\Controller\ActionController,
  * @author     Jurian Sluiman <jurian@soflomo.com>
  * @version    SVN: $Id:  $
  */
-class IndexController extends ActionController
+class ArchiveController extends ActionController
 {
-    const ITEMS_PER_PAGE = 15;
-
     /**
      * @var ArticleService
      */
     protected $service;
 
-    public function __construct (ArticleService $service)
+    protected $itemsPerPage;
+
+    public function __construct (ArticleService $service, $items_per_page)
     {
-        $this->service = $service;
+        $this->service      = $service;
+        $this->itemsPerPage = $items_per_page;
     }
     
     /**
@@ -67,7 +69,7 @@ class IndexController extends ActionController
         $offset   = $this->getParam('offset', 0);
         $articles = $this->service
                          ->setBlog($this->page->getModuleId())
-                         ->getPaginatedArticles($offset, self::ITEMS_PER_PAGE);
+                         ->getPaginatedArticles($offset, $this->itemsPerPage);
 
         return array('articles' => $articles, 'current_route' => $this->getMatchedRouteName());
     }
