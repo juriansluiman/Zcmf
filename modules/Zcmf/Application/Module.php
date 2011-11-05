@@ -46,22 +46,10 @@ class Module
     {
         $app            = $e->getParam('application');
         $config         = $e->getParam('modules')->getMergedConfig();
-        $routerListener = $this->getRouterListener($app->getLocator(), $config->route_segments);
+        $routerListener = $app->getLocator()->get('router');
         $app->events()->attachAggregate($routerListener);
     }
 
-    protected function getRouterListener(Locator $locator, Config $config = null)
-    {
-        if ($this->routerListener instanceof Router\Listener) {
-            return $this->routerListener;
-        }
-
-        $routerListener       = new Router\Listener($locator, $config);
-
-        $this->routerListener = $routerListener;
-        return $routerListener;
-    }
-    
     public function initializeView(Event $e)
     {
         $app          = $e->getParam('application');

@@ -10,19 +10,20 @@ use ArrayAccess,
     Zend\EventManager\ListenerAggregate,
     Zend\Mvc\MvcEvent,
     Zend\Mvc\Router\Http\Part,
-    Zend\Mvc\Router\RouteBroker;
+    Zend\Mvc\Router\RouteBroker,
+    SpiffyDoctrine\Service\Doctrine;
 
 class Listener implements ListenerAggregate
 {
     protected $events;
-    protected $locator;
+    protected $doctrine;
     protected $routeSegments;
     protected $listeners = array();
 
-    public function __construct(Locator $locator, Config $routeSegments = null)
+    public function __construct(Doctrine $doctrine, array $routes)
     {
-        $this->locator       = $locator;
-        $this->routeSegments = $routeSegments;
+        $this->doctrine      = $doctrine;
+        $this->routeSegments = $routes;
     }
 
     public function attach(EventCollection $events)
@@ -59,7 +60,7 @@ class Listener implements ListenerAggregate
 
     public function loadRoutes(MvcEvent $e)
     {
-        $em    = $this->locator->get('doctrine')->getEntityManager();
+        $em    = $this->doctrine->getEntityManager();
 
         $pages = $em->getRepository('Zcmf\Application\Model\Page')->getRootNodes();
         $pages = new ArrayObject($pages);
@@ -84,7 +85,7 @@ class Listener implements ListenerAggregate
         $pageId = $match->getParam('page-id', null);
 
         if (null !== $pageId && is_numeric($pageId)) {
-            $em   = $this->locator->get('doctrine')->getEntityManager();
+            $em   = $this->doctrine->getEntityManager();
             $page = $em->find('Zcmf\Application\Model\Page', $pageId);
 
             $e->setParam('page', $page);

@@ -17,7 +17,7 @@ class Parser
      * 
      * @param Config $config
      */
-    public function __construct(Config $config)
+    public function __construct(array $config)
     {
         $this->config = $config;
     }
@@ -33,8 +33,7 @@ class Parser
         foreach ($pages as $page) {
             /** @var $page Zcmf\Application\Model\Page */
 
-            $route = $this->getModule($page->getModule())
-                          ->toArray();
+            $route = $this->getModule($page->getModule());
             $route['options']['defaults']['page-id'] = $page->getId();
 
             /**
@@ -89,10 +88,10 @@ class Parser
      */
     protected function getModule($name)
     {
-        if(!isset($this->config->{$name})) {
+        if(!isset($this->config[$name])) {
             throw new \RuntimeException('No module config found for module ' . $name);
         }
 
-        return $this->config->{$name};
+        return $this->config[$name];
     }
 }

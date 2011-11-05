@@ -17,6 +17,29 @@ $types   = array(
     ),
 );
 
+$route = array(
+    'type' => 'literal',
+    'options' => array(
+        'defaults' => array(
+            'controller' => 'Zcmf\Content\Controller\IndexController',
+            'action'     => 'index',
+        ),
+    ),
+    'may_terminate' => true,
+    'child_routes' => array(
+        'send' => array(
+            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'options' => array(
+                'route'    => '/send',
+                'defaults' => array(
+                    'controller' => 'Zcmf\Content\Controller\IndexController',
+                    'action'     => 'send',
+                ),
+            ),
+        ),
+    ),
+);
+
 return array(
     'di' => array(
         'instance' => array(
@@ -55,33 +78,16 @@ return array(
                     ),
                 ),
             ),
-        ),
-    ),
-    'script_paths' => array(
-        'Zcmf\Content' => __DIR__ . '/../views',
-    ),
-    'route_segments' => array(
-        'content' => array(
-            'type' => 'literal',
-            'options' => array(
-                'defaults' => array(
-                    'controller' => 'Zcmf\Content\Controller\IndexController',
-                    'action'     => 'index',
-                ),
-            ),
-            'may_terminate' => true,
-            'child_routes' => array(
-                'send' => array(
-                    'type' => 'Zend\Mvc\Router\Http\Literal',
-                    'options' => array(
-                        'route'    => '/send',
-                        'defaults' => array(
-                            'controller' => 'Zcmf\Content\Controller\IndexController',
-                            'action'     => 'send',
-                        ),
+            'router' => array(
+                'parameters' => array(
+                    'routes' => array(
+                        'content' => $route
                     ),
                 ),
             ),
         ),
+    ),
+    'script_paths' => array(
+        'Zcmf\Content' => __DIR__ . '/../views',
     ),
 );
