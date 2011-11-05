@@ -31,17 +31,16 @@ class Admin implements AdminAware, LocatorAware
     public function create (Page $page)
     {
         $content = new Content;
-        $em      = $this->getLocator()->get('doctrine-em');
+        $em      = $this->getLocator()->get('doctrine')->getEntityManager();
         $em->persist($content);
         $em->flush();
 
         $page->setModuleId($content->id);
-        $em->flush();
     }
 
     public function delete(Page $page)
     {
-        $em      = $this->getLocator()->get('doctrine-em');
+        $em      = $this->getLocator()->get('doctrine')->getEntityManager();
         $content = $em->find('Zcmf\Content\Model\Page', $page->getModuleId());
         $em->remove($content);
         $em->flush();
