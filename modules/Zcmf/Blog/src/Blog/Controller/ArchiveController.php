@@ -47,10 +47,28 @@ use Zcmf\Application\Controller\ActionController,
  */
 class IndexController extends ActionController
 {
+    const ITEMS_PER_PAGE = 15;
+
+    /**
+     * @var ArticleService
+     */
+    protected $service;
+
+    public function __construct (ArticleService $service)
+    {
+        $this->service = $service;
+    }
+    
     /**
      * Render content page
      */
     public function indexAction ()
     {
+        $offset   = $this->getParam('offset', 0);
+        $articles = $this->service
+                         ->setBlog($this->page->getModuleId())
+                         ->getPaginatedArticles($offset, self::ITEMS_PER_PAGE);
+
+        return array('articles' => $articles, 'current_route' => $this->getMatchedRouteName());
     }
 }

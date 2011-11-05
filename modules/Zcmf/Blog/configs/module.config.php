@@ -27,10 +27,11 @@ return array(
                 'archive' => array(
                     'type' => 'segment',
                     'options' => array(
-                        'route'    => '/archive[/:page]',
+                        'route'    => '/archive[/:offset]',
                         'defaults' => array(
                             'controller' => 'Zcmf\Blog\Controller\ArchiveController',
                             'action'     => 'index',
+                            'offset'     => '0',
                         ),
                         'constraints' => array(
                             'page'       => '[0-9]+'
@@ -45,16 +46,12 @@ return array(
     ),
     'di' => array(
         'instance' => array(
-            'alias' => array(
-                'blog-service' => 'Zcmf\Blog\Service\Blog',
-                'article-service' => 'Zcmf\Blog\Service\Article',
-            ),
-            'blog-service' => array(
+            'Zcmf\Blog\Controller\ArticleController' => array(
                 'parameters' => array(
-                    'doctrine' => 'doctrine',
+                    'service' => 'Zcmf\Blog\Service\Article',
                 ),
             ),
-            'article-service' => array(
+            'Zcmf\Blog\Service\Article' => array(
                 'parameters' => array(
                     'doctrine' => 'doctrine',
                 ),

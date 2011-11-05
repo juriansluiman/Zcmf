@@ -46,24 +46,52 @@ use SpiffyDoctrine\Service\Doctrine,
 class Article
 {
     /**
-     * @var EntityManager
+     * @var Doctrine
      */
-    protected $em;
+    protected $doctrine;
+
+    protected $blog;
     
-    public function setEntityManager (Doctrine $doctrine)
+    public function setDoctrine (Doctrine $doctrine)
     {
-        $this->em = $doctrine->getEntityManager();
+        $this->doctrine = $doctrine;
     }
 
-    public function getRecentArticles ($blogId)
+    public function setBlog ($blogId)
     {
-        return $this->em->getRepository('Zcmf\Blog\Model\Article')
-                        ->findBy(array('blog' => $blogId));
+        $this->blog = $blogId;
+
+        return $this;
     }
 
-    public function getArticle ($blogId, $id)
+    public function getRecentArticles ()
     {
-        return $this->em->getRepository('Zcmf\Blog\Model\Article')
-                        ->findOneBy(array('blog' => $blogId, 'id' => $id));
+        /** @todo Create selection based on "recent" criteria */
+        return $this->getEntityManager()
+                    ->getRepository('Zcmf\Blog\Model\Article')
+                    ->findBy(array('blog' => $this->blog));
+    }
+
+    public function getArticle ($id)
+    {
+        return $this->getEntityManager()
+                    ->getRepository('Zcmf\Blog\Model\Article')
+                    ->findOneBy(array('blog' => $this->blog, 'id' => $id));
+    }
+
+    public function getPaginatedArticles ($offset, $window)
+    {
+        /** @todo Instantiate a Paginator to calculate offset and window */
+        return $this->getEntityManager()
+                    ->getRepository('Zcmf\Blog\Model\Article')
+                    ->findBy(array('blog' => $this->blog));
+    }
+
+    /**
+     * @return EntityManager
+     */
+    protected function getEntityManager ()
+    {
+        return $this->doctrine->getEntityManager();
     }
 }

@@ -34,6 +34,7 @@
 namespace Zcmf\Blog\Controller;
 
 use Zcmf\Application\Controller\ActionController,
+    Zcmf\Blog\Service\Article as ArticleService,
     Zend\Mvc\Exception\DomainException;
 
 /**
@@ -46,12 +47,23 @@ use Zcmf\Application\Controller\ActionController,
 class ArticleController extends ActionController
 {
     /**
+     * @var ArticleService
+     */
+    protected $service;
+    
+    public function __construct (ArticleService $service)
+    {
+        $this->service = $service;
+    }
+
+    /**
      * Render content page
      */
     public function indexAction ()
     {
-        $service  = $service = $this->getLocator()->get('article-service');
-        $articles = $service->getRecentArticles($this->page->getModuleId());
+        $articles = $this->service
+                         ->setBlog($this->page->getModuleId())
+                         ->getRecentArticles();
         
         return array('articles' => $articles, 'current_route' => $this->getMatchedRouteName());
     }
@@ -59,8 +71,9 @@ class ArticleController extends ActionController
     public function viewAction ()
     {
         $id      = $this->getParam('id', 0);
-        $service = $this->getLocator()->get('article-service');
-        $article = $service->getArticle($this->page->getModuleId(), $id);
+        $article = $this->service
+                        ->setBlog($this->page->getModuleId())
+                        ->getArticle($id);
 
         if (null === $article) {
             throw new DomainException('Article not found', 404);
