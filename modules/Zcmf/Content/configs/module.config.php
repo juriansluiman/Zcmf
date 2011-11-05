@@ -21,7 +21,7 @@ $route = array(
     'type' => 'literal',
     'options' => array(
         'defaults' => array(
-            'controller' => 'Zcmf\Content\Controller\IndexController',
+            'controller' => 'content-index',
             'action'     => 'index',
         ),
     ),
@@ -32,7 +32,7 @@ $route = array(
             'options' => array(
                 'route'    => '/send',
                 'defaults' => array(
-                    'controller' => 'Zcmf\Content\Controller\IndexController',
+                    'controller' => 'content-index',
                     'action'     => 'send',
                 ),
             ),
@@ -43,6 +43,10 @@ $route = array(
 return array(
     'di' => array(
         'instance' => array(
+            'alias' => array(
+                'content-index' => 'Zcmf\Content\Controller\IndexController'
+            ),
+            
             'Zend\View\HelperLoader' => array(
                 'parameters' => array(
                     'map' => array(
@@ -50,6 +54,15 @@ return array(
                         'renderForm'  => 'Zcmf\Content\View\Helper\Form',
                         'renderImage' => 'Zcmf\Content\View\Helper\Image',
                         'renderVideo' => 'Zcmf\Content\View\Helper\Video',
+                    ),
+                ),
+            ),
+            'Zend\View\PhpRenderer' => array(
+                'parameters' => array(
+                    'options'  => array(
+                        'script_paths' => array(
+                            'content' => __DIR__ . '/../views',
+                        ),
                     ),
                 ),
             ),

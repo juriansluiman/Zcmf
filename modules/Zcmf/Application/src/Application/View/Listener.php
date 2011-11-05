@@ -8,7 +8,7 @@ use ArrayAccess,
     Zend\EventManager\EventCollection,
     Zend\EventManager\ListenerAggregate,
     Zend\EventManager\StaticEventCollection,
-    Zend\Http\Response,
+    Zend\Http\PhpEnvironment\Response,
     Zend\Mvc\Application,
     Zend\Mvc\MvcEvent,
     Zend\View\Renderer,
@@ -44,7 +44,7 @@ class Listener implements ListenerAggregate
     public function attach(EventCollection $events)
     {
         $this->listeners[] = $events->attach('dispatch.error', array($this, 'renderError'));
-        $this->listeners[] = $events->attach('dispatch', array($this, 'render404'), -80);
+        //$this->listeners[] = $events->attach('dispatch', array($this, 'render404'), -80);
         $this->listeners[] = $events->attach('dispatch', array($this, 'renderLayout'), -1000);
     }
 
@@ -102,7 +102,6 @@ class Listener implements ListenerAggregate
 
         $routeMatch = $e->getRouteMatch();
         $controller = $routeMatch->getParam('controller', 'index');
-        $controller = $this->filterViewDirectory($controller);
         $file       = $routeMatch->getParam('script', null);
         if (null === $file) {
             $file = $routeMatch->getParam('action', 'index');
@@ -115,23 +114,11 @@ class Listener implements ListenerAggregate
         } elseif (is_object($vars) && !$vars instanceof ArrayAccess) {
             $vars = (array) $vars;
         }
-
+        
         $content    = $this->view->render($script, $vars);
 
         $e->setResult($content);
         return $content;
-    }
-
-    protected function filterViewDirectory ($controller)
-    {
-        // Remove namespace prefix
-        $controller = substr($controller, strrpos($controller, '\\') +1);
-
-        // Change IndexController into index
-        $controller = str_replace('Controller', '', $controller);
-        
-        $controller = strtolower($controller);
-        return $controller;
     }
 
     public function renderLayout(MvcEvent $e)

@@ -4,7 +4,7 @@ $route = array(
     'type' => 'literal',
     'options' => array(
         'defaults' => array(
-            'controller' => 'Zcmf\Blog\Controller\ArticleController',
+            'controller' => 'blog-article',
             'action'     => 'index',
         ),
     ),
@@ -15,7 +15,7 @@ $route = array(
             'options' => array(
                 'route'    => '/article/:id',
                 'defaults' => array(
-                    'controller' => 'Zcmf\Blog\Controller\ArticleController',
+                    'controller' => 'blog-article',
                     'action'     => 'view',
                 ),
                 'constraints' => array(
@@ -28,7 +28,7 @@ $route = array(
             'options' => array(
                 'route'    => '/archive[/:offset]',
                 'defaults' => array(
-                    'controller' => 'Zcmf\Blog\Controller\ArchiveController',
+                    'controller' => 'blog-archive',
                     'action'     => 'index',
                     'offset'     => '0',
                 ),
@@ -63,6 +63,15 @@ return array(
             'Zcmf\Blog\Service\Article' => array(
                 'parameters' => array(
                     'doctrine' => 'doctrine',
+                ),
+            ),
+            'Zend\View\PhpRenderer' => array(
+                'parameters' => array(
+                    'options'  => array(
+                        'script_paths' => array(
+                            'blog' => __DIR__ . '/../views',
+                        ),
+                    ),
                 ),
             ),
             'doctrine' => array(
