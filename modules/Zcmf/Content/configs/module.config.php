@@ -23,10 +23,10 @@ return array(
             'Zend\View\HelperLoader' => array(
                 'parameters' => array(
                     'map' => array(
-                        'content_text'  => 'Zcmf\Content\View\Helper\Text',
-                        'content_form'  => 'Zcmf\Content\View\Helper\Form',
-                        'content_image' => 'Zcmf\Content\View\Helper\Image',
-                        'content_video' => 'Zcmf\Content\View\Helper\Video',
+                        'renderText'  => 'Zcmf\Content\View\Helper\Text',
+                        'renderForm'  => 'Zcmf\Content\View\Helper\Form',
+                        'renderImage' => 'Zcmf\Content\View\Helper\Image',
+                        'renderVideo' => 'Zcmf\Content\View\Helper\Video',
                     ),
                 ),
             ),
