@@ -2,14 +2,11 @@
 
 namespace Zcmf\Application\Router;
 
-use Traversable,
-    Zend\Config\Config,
-    Zend\Mvc\Router\RouteBroker,
-    Zend\Mvc\Router\Http\Part;
+use Traversable;
 
 class Parser
 {
-    protected $config;
+    protected $routes;
     protected $pages;
 
     /**
@@ -17,9 +14,9 @@ class Parser
      * 
      * @param Config $config
      */
-    public function __construct(array $config)
+    public function __construct(array $routes)
     {
-        $this->config = $config;
+        $this->routes = $routes;
     }
 
     /**
@@ -88,10 +85,10 @@ class Parser
      */
     protected function getModule($name)
     {
-        if(!isset($this->config[$name])) {
-            throw new \RuntimeException('No module config found for module ' . $name);
+        if(!isset($this->routes[$name])) {
+            throw new \RuntimeException('No module routes found for module ' . $name);
         }
 
-        return $this->config[$name];
+        return $this->routes[$name];
     }
 }

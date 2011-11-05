@@ -2,15 +2,10 @@
 
 namespace Zcmf\Application\Router;
 
-use ArrayAccess,
-    ArrayObject,
-    Zend\Config\Config,
-    Zend\Di\Locator,
-    Zend\EventManager\EventCollection,
+use ArrayObject,
     Zend\EventManager\ListenerAggregate,
+    Zend\EventManager\EventCollection,
     Zend\Mvc\MvcEvent,
-    Zend\Mvc\Router\Http\Part,
-    Zend\Mvc\Router\RouteBroker,
     SpiffyDoctrine\Service\Doctrine;
 
 class Listener implements ListenerAggregate

@@ -3,8 +3,6 @@
 namespace Zcmf\Application;
 
 use Zend\Module\Manager,
-    Zend\Config\Config,
-    Zend\Di\Locator,
     Zend\EventManager\StaticEventManager,
     Zend\EventManager\Event,
     Zend\Loader\AutoloaderFactory;
@@ -39,13 +37,12 @@ class Module
 
     public function getConfig()
     {
-        return new Config(include __DIR__ . '/configs/module.config.php');
+        return include __DIR__ . '/configs/module.config.php';
     }
 
     public function initializeRouter(Event $e)
     {
         $app            = $e->getParam('application');
-        $config         = $e->getParam('modules')->getMergedConfig();
         $routerListener = $app->getLocator()->get('router');
         $app->events()->attachAggregate($routerListener);
     }
