@@ -1,12 +1,15 @@
-<?php echo $this->doctype() ?>
+<?= $this->doctype('HTML5') ?>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <?php echo $this->headTitle() ?>
-
+    <?= $this->headMeta() ?>
+    <?= $this->headTitle() ?>
+    <?= $this->headLink() ?>
+    <?= $this->headStyle() ?>
+    <?= $this->headScript() ?>
 </head>
+
 <body>
-<?php echo $this->raw('content'); ?>
+    <?= $this->raw('content') ?>
 </body>
 </html>

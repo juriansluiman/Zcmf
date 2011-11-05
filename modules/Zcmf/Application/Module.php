@@ -52,7 +52,7 @@ class Module
         $app          = $e->getParam('application');
         $locator      = $app->getLocator();
         $config       = $e->getParam('modules')->getMergedConfig();
-        $view         = $this->getView($app);
+        $view         = $this->getView($app, $config);
         $viewListener = $this->getViewListener($view, $config);
         $app->events()->attachAggregate($viewListener);
         $events       = StaticEventManager::getInstance();
@@ -72,7 +72,7 @@ class Module
         return $viewListener;
     }
 
-    protected function getView($app)
+    protected function getView($app, $config)
     {
         if ($this->view) {
             return $this->view;
@@ -85,7 +85,7 @@ class Module
 
         $view->plugin('headTitle')->setSeparator(' - ')
                                   ->setAutoEscape(false)
-                                  ->append('Application');
+                                  ->append($config->head_title);
         $this->view = $view;
         return $view;
     }    

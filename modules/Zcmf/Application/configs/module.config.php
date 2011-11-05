@@ -1,6 +1,8 @@
 <?php
 return array(
     'layout' => 'layouts/layout.phtml',
+    'head_title' => 'Application',
+    
     'di' => array(
         'instance' => array(
             'alias' => array(
