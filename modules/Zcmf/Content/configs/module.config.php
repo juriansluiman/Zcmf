@@ -68,7 +68,11 @@ return array(
             ),
             'Zcmf\Content\Service\Collection' => array(
                 'parameters' => array(
-                    'doctrine' => 'doctrine'
+                    'doctrine' => 'doctrine',
+                    'items' => array(
+                        'text' => 'Zcmf\Content\Model\Item\Text',
+                        'form' => 'Zcmf\Content\Model\Item\Form',
+                    )
                 ),
             ),
             'doctrine' => array(

@@ -58,7 +58,7 @@ class IndexController extends ActionController
     {
         $service = $this->getLocator()->get('Zcmf\Content\Service\Collection');
         $page    = $service->getPage($this->page->getModuleId());
-        $items   = $service->getContainerItems($page);
+        $items   = $service->getContainerItems($this->page->getModuleId());
 
         $this->setParam('script', $page->getType());
 
@@ -81,7 +81,7 @@ class IndexController extends ActionController
         
         $service = $this->getLocator()->get('Zcmf\Content\Service\Collection');
         $page    = $service->getPage($this->page->getModuleId());
-        $items   = $service->getContainerItems($page);
+        $items   = $service->getContainerItems($this->page->getModuleId());
 
         $id      = (int) $this->request->post()->get(self::ID);
         

@@ -65,22 +65,6 @@ abstract class Collection
      */
     protected $type;
     
-    /**
-     * @ORM\OneToMany(targetEntity="Zcmf\Content\Model\Item\Text", mappedBy="collection")
-     */
-    protected $texts;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Zcmf\Content\Model\Item\Form", mappedBy="collection")
-     */
-    protected $forms;
-    
-    public function __construct ()
-    {
-        $this->texts = new ArrayCollection;
-        $this->forms = new ArrayCollection;
-    }
-    
     public function getId() {
         return $this->id;
     }
@@ -91,28 +75,5 @@ abstract class Collection
 
     public function setType($type) {
         $this->type = $type;
-    }
-
-    public function getTexts() {
-        return $this->texts;
-    }
-
-    public function setTexts($texts) {
-        $this->texts = $texts;
-    }
-
-    public function getForms ()
-    {
-        return $this->forms;
-    }
-
-    public function setForms ($forms)
-    {
-        $this->forms = $forms;
-    }
-
-    public function getItems() {
-        return array_merge($this->getTexts()->toArray(),
-                           $this->getForms()->toArray());
     }
 }

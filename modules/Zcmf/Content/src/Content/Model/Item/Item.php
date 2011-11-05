@@ -62,6 +62,7 @@ abstract class Item
 
     /**
      * @ORM\ManyToOne(targetEntity="Zcmf\Content\Model\Collection")
+     * @ORM\JoinColumn(name="collection_id", referencedColumnName="id")
      * @var Collection
      */
     protected $collection;

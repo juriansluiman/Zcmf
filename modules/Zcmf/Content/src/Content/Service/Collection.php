@@ -3,17 +3,22 @@
 namespace Zcmf\Content\Service;
 
 use SpiffyDoctrine\Service\Doctrine,
-    Doctrine\ORM\EntityManager,
-    Zcmf\Content\Model\Collection as CollectionModel;
+    Doctrine\ORM\EntityManager;
 
 class Collection
 {
     protected $types;
+    protected $items;
     protected $em;
     
     public function setContentTypes (array $types)
     {
         $this->$types = $types;
+    }
+
+    public function setItemTypes (array $items)
+    {
+        $this->items = $items;
     }
     
     public function setEntityManager (Doctrine $doctrine)
@@ -31,15 +36,20 @@ class Collection
         return $this->em->find('Zcmf\Content\Model\Container', $id);
     }
     
-    public function getContainerItems (CollectionModel $container)
+    public function getContainerItems ($id)
     {
         $items = array();
-        foreach ($container->getItems() as $item) {
-            $items[$item->getName()] = $item;
+
+        foreach ($this->items as $item) {
+            $result = $this->em->getRepository($item)->findBy(array('collection' => $id));
+
+            if (count($result)) {
+                foreach ($result as $item) {
+                    $items[$item->getName()] = $item;
+                }
+            }
         }
-        
-        // @todo check if all types are available?
-        
+
         return $items;
     }
 }
