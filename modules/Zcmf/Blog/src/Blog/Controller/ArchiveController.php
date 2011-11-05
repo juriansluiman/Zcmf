@@ -55,7 +55,7 @@ class ArchiveController extends ActionController
 
     protected $itemsPerPage;
 
-    public function __construct (ArticleService $service, $items_per_page)
+    public function __construct (ArticleService $service, $items_per_page = 10)
     {
         $this->service      = $service;
         $this->itemsPerPage = $items_per_page;

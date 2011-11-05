@@ -46,9 +46,18 @@ return array(
     ),
     'di' => array(
         'instance' => array(
-            'Zcmf\Blog\Controller\ArticleController' => array(
+            'alias' => array(
+                'blog-article' => 'Zcmf\Blog\Controller\ArticleController',
+                'blog-archive' => 'Zcmf\Blog\Controller\ArchiveController',
+            ),
+            'blog-article' => array(
                 'parameters' => array(
                     'service' => 'Zcmf\Blog\Service\Article',
+                ),
+            ),
+            'blog-archive' => array(
+                'parameters' => array(
+                    'service'        => 'Zcmf\Blog\Service\Article'
                 ),
             ),
             'Zcmf\Blog\Service\Article' => array(
